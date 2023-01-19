@@ -5,7 +5,7 @@
 function getList() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let potentialFail = Math.round(Math.random() * 100) < 10;
+      let potentialFail = Math.round(Math.random() * 100) < 30;
       if (potentialFail) {
         reject({ success: false, message: "Failed to get list of hobbits." });
       } else {
@@ -14,6 +14,21 @@ function getList() {
     }, 10);
   });
 }
+
+//exercise1
+const errorParagraph = document.querySelector("#error")
+const resolvedUl = document.querySelector("#list")
+
+//exercise 2
+getList()
+  .then((value) => value.forEach((value) => {
+    const li = document.createElement("li")
+    li.textContent = value
+    resolvedUl.appendChild(li)
+  }))
+  .catch((error) => errorParagraph.textContent = error.success)
+
+//exercise 3
 
 // TODO: Handle the resolved or rejected states of the promise
 
